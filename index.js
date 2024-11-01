@@ -73,7 +73,7 @@ class SimpleImageProcessor {
         let warnings = false;
 
         glob.sync(source + '/**/*').forEach((fromImagePath) => {
-            if (fromImagePath.match(/\.(jpe?g|png|gif)$/i) === null) {
+            if (fromImagePath.match(/\.(jpe?g|png|gif|svg)$/i) === null) {
                 return
             }
 
@@ -134,7 +134,7 @@ class SimpleImageProcessor {
                         plugins: [
                             imageminJpegtran(),
                             imageminPngquant(imageminPngquantOptions),
-                            imageminSvgo(imageminSvgoOptions),
+                            imageminSvgo.default(imageminSvgoOptions),
                         ],
                     })
                 })
