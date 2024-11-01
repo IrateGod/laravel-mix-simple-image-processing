@@ -8,6 +8,7 @@ const imagemin = require('imagemin')
 const imageminJpegtran = require('imagemin-jpegtran')
 const imageminPngquant = require('imagemin-pngquant')
 const imageminWebp = require('imagemin-webp')
+const imageminSvgo = require('imagemin-svgo')
 
 class SimpleImageProcessor {
     register(options = {}) {
@@ -25,6 +26,7 @@ class SimpleImageProcessor {
             thumbnailsWebpOnly,
             imageminPngquantOptions,
             imageminWebpOptions,
+            imageminSvgoOptions,
         } = Object.assign({
             disable: false,
             source: 'resources/images',
@@ -43,6 +45,9 @@ class SimpleImageProcessor {
             imageminWebpOptions: {
                 quality: 50
             },
+            imageminSvgoOptions: {
+                plugins: []
+            }
         }, options)
 
         if (disable) {
@@ -123,12 +128,13 @@ class SimpleImageProcessor {
                 }
             }
 
-            if (filesToOptimize.lenght) {
+            if (filesToOptimize.length) {
                 imagemin(filesToOptimize, {
                     destination: destinationFolder,
                     plugins: [
                         imageminJpegtran(),
                         imageminPngquant(imageminPngquantOptions),
+                        imageminSvgo(imageminSvgoOptions),
                     ],
                 })
             }
