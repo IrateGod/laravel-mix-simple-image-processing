@@ -32,6 +32,5 @@
     "optimize"
   ],
   "author": "Tristan Mouchet",
-  "license": "ISC",
-  "type": "module"
+  "license": "ISC"
 }

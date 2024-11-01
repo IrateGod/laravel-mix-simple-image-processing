@@ -8,7 +8,7 @@ const imagemin = require('imagemin')
 const imageminJpegtran = require('imagemin-jpegtran')
 const imageminPngquant = require('imagemin-pngquant')
 const imageminWebp = require('imagemin-webp')
-import imageminSvgo from 'imagemin-svgo'
+const imageminSvgo = import('imagemin-svgo');
 
 class SimpleImageProcessor {
     register(options = {}) {
