@@ -44,9 +44,7 @@ class SimpleImageProcessor {
             imageminWebpOptions: {
                 quality: 50
             },
-            imageminSvgoOptions: {
-                plugins: []
-            }
+            imageminSvgoOptions: {}
         }, options)
 
         if (disable) {
