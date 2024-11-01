@@ -8,7 +8,6 @@ const imagemin = require('imagemin')
 const imageminJpegtran = require('imagemin-jpegtran')
 const imageminPngquant = require('imagemin-pngquant')
 const imageminWebp = require('imagemin-webp')
-const imageminSvgo = import('imagemin-svgo');
 
 class SimpleImageProcessor {
     register(options = {}) {
@@ -129,13 +128,15 @@ class SimpleImageProcessor {
             }
 
             if (filesToOptimize.length) {
-                imagemin(filesToOptimize, {
-                    destination: destinationFolder,
-                    plugins: [
-                        imageminJpegtran(),
-                        imageminPngquant(imageminPngquantOptions),
-                        imageminSvgo(imageminSvgoOptions),
-                    ],
+                import('imagemin-svgo').then((imageminSvgo) => {
+                    imagemin(filesToOptimize, {
+                        destination: destinationFolder,
+                        plugins: [
+                            imageminJpegtran(),
+                            imageminPngquant(imageminPngquantOptions),
+                            imageminSvgo(imageminSvgoOptions),
+                        ],
+                    })
                 })
             }
 
